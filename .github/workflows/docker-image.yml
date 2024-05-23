@@ -25,11 +25,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Build Docker image
+        run: docker build -t ghcr.io/${{ env.username }}/practical-w:latest .
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v3
-        with:
-          context: ./docker  # Change this to your subdirectory
-          push: true
-          tags: ghcr.io/${{ github.repository }}:latest
-
+      - name: Push Docker image to GHCR
+        run: docker push ghcr.io/${{ env.username }}/practical-w:latest
