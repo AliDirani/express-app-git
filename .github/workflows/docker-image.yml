@@ -27,7 +27,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Build Docker image
-        run: docker build -t ghcr.io/${{ env.username }}/practical-w:latest .
+        run: docker build -t ghcr.io/${{ env.username }}/express-app-git:latest .
 
       - name: Push Docker image to GHCR
-        run: docker push ghcr.io/${{ env.username }}/practical-w:latest
+        run: docker push ghcr.io/${{ env.username }}/express-app-git:latest
