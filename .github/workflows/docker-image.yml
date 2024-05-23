@@ -29,6 +29,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
-          context: ./docker  # Change this to your subdirectory
+          context: ./express-app
           push: true
           tags: ghcr.io/alidirani/express-app-git:latest
