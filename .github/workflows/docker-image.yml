@@ -17,7 +17,7 @@ jobs:
         id: cache-npm
         uses: actions/cache@v3
         with:
-          path: express-app/.npm
+          path: ~/.npm
           key: ${{ runner.os }}-build-${{ hashFiles('express-app/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-
@@ -26,16 +26,16 @@ jobs:
       - name: List the state of node modules (only if cache is missed)
         if: steps.cache-npm.outputs.cache-hit != 'true'
         continue-on-error: true
-        run: npm list
+        run: npm list --prefix express-app
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --prefix express-app
 
       - name: Build
-        run: npm run build
+        run: npm run build --prefix express-app
 
       - name: Test
-        run: npm test
+        run: npm test --prefix express-app
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
